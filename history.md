@@ -22,3 +22,18 @@
   노트북에 SSL 설정 및 Node.js(Express) 에 https 설정 => 핸드폰으로 사이트 접속 하기 위해서<br>
   해당 작업 nginx 도입 후 nginx 로 이관 및 포트포워딩 까지 작업 할것 ( 공유기 계정 획득 완료 )
   
+
+## 2023.01.15
+  Cent OS 에 Slack 이 필요해져서 설치를 하는데 애를 많이 먹음.. <br/>
+  1. 인터넷 slack 창으로 가서 설치 <br/>
+  2. .rpm 까지는 문제없이 받았으나, 자꾸 "유감스럽게도 뭔가가 잘못되었습니다" 라고 뜸 <br/>
+  3. 그래서 파일 받은곳 가서 sudo rpm -ivh ~.rpm 을 했는데 </br>
+      경고: slack-4.29.149-0.1.el8.x86_64.rpm: Header V4 RSA/SHA512 Signature, key ID 7eb66c16: NOKEY</br>
+      오류: Failed dependencies:</br>
+	      libXScrnSaver is needed by slack-4.29.149-0.1.el8.x86_64</br>
+	      libappindicator-gtk3 is needed by slack-4.29.149-0.1.el8.x86_64</br>
+        라고 뜨면서 안됨..</br>
+      CentOS 7 GPG Key 도 받아보고 했지만 정상적으로 수행이 안됨.. 아직 원인 해결 못했으나 libScrnSaver 가 없어서 인듯</br>
+  4. 결국 .rpm 받은 자리에서 sudo yum localinstall ./slack-*.rpm 으로 설치 완료
+  5. 참고 자료 [Rpm Header V4 RSA/SHA1 Signature, key ID … NOKEY](https://velog.io/@zeesoo/Linux-yum-error-rpmtsHdrFromFdno-Header-V3-RSASHA1-Signature-key-ID-c105b9de-NOKEY-%ED%95%B4%EA%B2%B0%EB%B0%A9%EB%B2%95) 
+  
